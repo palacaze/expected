@@ -31,4 +31,19 @@ TEST_CASE("Relational operators", "[relops]") {
   CHECK(fail2 != e);
   CHECK(1 != e);
 }
+
+TEST_CASE("Relational operators void", "[relops]") {
+  tl::expected<void, int> a;
+  tl::expected<void, int> b;
+
+  tl::unexpected<int> fail1(1);
+  tl::unexpected<int> fail2(2);
+  tl::expected<void, int> e = fail1;
+  tl::expected<void, int> f = fail1;
+  tl::expected<void, int> g = fail2;
+
+  CHECK(a == b);
+  CHECK(a != e);
+  CHECK(e == f);
+  CHECK(e != g);
 }
